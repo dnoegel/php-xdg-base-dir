@@ -15,7 +15,7 @@ class Xdg
     const S_IFDIR = 040000; // directory
     const S_IRWXO = 00007;  // rwx other
     const S_IRWXG = 00056;  // rwx group
-    const RUNTIME_DIR_FALLBACK = '/tmp/php-xdg-runtime-dir-fallback-';
+    const RUNTIME_DIR_FALLBACK = 'php-xdg-runtime-dir-fallback-';
 
     /**
      * @return string
@@ -90,7 +90,7 @@ class Xdg
             throw new \RuntimeException('XDG_RUNTIME_DIR was not set');
         }
 
-        $fallback = self::RUNTIME_DIR_FALLBACK . getenv('USER');
+        $fallback = sys_get_temp_dir() . DIRECTORY_SEPARATOR . self::RUNTIME_DIR_FALLBACK . getenv('USER');
 
         $create = false;
 

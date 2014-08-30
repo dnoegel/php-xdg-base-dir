@@ -83,7 +83,7 @@ class XdgTest extends PHPUnit_Framework_TestCase
      */
     public function testGetRuntimeShouldDeleteDirsWithWrongPermission()
     {
-        $runtimeDir = XdgBaseDir\Xdg::RUNTIME_DIR_FALLBACK . getenv('USER');
+        $runtimeDir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . XdgBaseDir\Xdg::RUNTIME_DIR_FALLBACK . getenv('USER');
 
         rmdir($runtimeDir);
         mkdir($runtimeDir, 0764, true);
