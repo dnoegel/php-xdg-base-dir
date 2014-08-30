@@ -22,7 +22,7 @@ class Xdg
      */
     public function getHomeDir()
     {
-        return getenv('HOME');
+        return getenv('HOME') ?: (getenv('HOMEDRIVE') . DIRECTORY_SEPARATOR . getenv('HOMEPATH'));
     }
 
     /**
