@@ -67,7 +67,6 @@ class XdgTest extends PHPUnit_Framework_TestCase
         $this->getXdg()->getRuntimeDir(true);
     }
 
-
     /**
      * In fallback mode a directory should be created
      */
@@ -78,7 +77,6 @@ class XdgTest extends PHPUnit_Framework_TestCase
         $permission = decoct(fileperms($dir) & 0777);
         $this->assertEquals(700, $permission);
     }
-
 
     /**
      * Ensure, that the fallback directories are created with correct permission
