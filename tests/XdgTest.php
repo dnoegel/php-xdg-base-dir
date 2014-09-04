@@ -10,6 +10,20 @@ class XdgTest extends PHPUnit_Framework_TestCase
         return new \XdgBaseDir\Xdg();
     }
 
+    public function testGetHomeDir()
+    {
+         putenv('HOME=/fake-dir');
+         $this->assertEquals('/fake-dir', $this->getXdg()->getHomeDir());
+    }
+
+    public function testGetFallbackHomeDir()
+    {
+        putenv('HOME=');
+        putenv('HOMEDRIVE=C:');
+        putenv('HOMEPATH=fake-dir');
+        $this->assertEquals('C:/fake-dir', $this->getXdg()->getHomeDir());
+    }
+
     public function testXdgPutCache()
     {
         putenv('XDG_DATA_HOME=tmp/');
@@ -67,7 +81,6 @@ class XdgTest extends PHPUnit_Framework_TestCase
         $this->getXdg()->getRuntimeDir(true);
     }
 
-
     /**
      * In fallback mode a directory should be created
      */
@@ -79,13 +92,12 @@ class XdgTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(700, $permission);
     }
 
-
     /**
      * Ensure, that the fallback directories are created with correct permission
      */
     public function testGetRuntimeShouldDeleteDirsWithWrongPermission()
     {
-        $runtimeDir = XdgBaseDir\Xdg::RUNTIME_DIR_FALLBACK . getenv('USER');
+        $runtimeDir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . XdgBaseDir\Xdg::RUNTIME_DIR_FALLBACK . getenv('USER');
 
         rmdir($runtimeDir);
         mkdir($runtimeDir, 0764, true);

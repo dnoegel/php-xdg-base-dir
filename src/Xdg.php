@@ -12,17 +12,17 @@ namespace XdgBaseDir;
  */
 class Xdg
 {
-    CONST S_IFDIR = 040000; // directory
-    CONST S_IRWXO = 00007;  // rwx other
-    CONST S_IRWXG  = 00056; // rwx group
-    CONST RUNTIME_DIR_FALLBACK = '/tmp/php-xdg-runtime-dir-fallback-';
+    const S_IFDIR = 040000; // directory
+    const S_IRWXO = 00007;  // rwx other
+    const S_IRWXG = 00056;  // rwx group
+    const RUNTIME_DIR_FALLBACK = 'php-xdg-runtime-dir-fallback-';
 
     /**
      * @return string
      */
     public function getHomeDir()
     {
-        return getenv('HOME');
+        return getenv('HOME') ?: (getenv('HOMEDRIVE') . DIRECTORY_SEPARATOR . getenv('HOMEPATH'));
     }
 
     /**
@@ -30,7 +30,7 @@ class Xdg
      */
     public function getHomeConfigDir()
     {
-        $path = getenv('XDG_CONFIG_HOME') ? : $this->getHomeDir() . DIRECTORY_SEPARATOR . '.config';
+        $path = getenv('XDG_CONFIG_HOME') ?: $this->getHomeDir() . DIRECTORY_SEPARATOR . '.config';
 
         return $path;
     }
@@ -40,7 +40,7 @@ class Xdg
      */
     public function getHomeDataDir()
     {
-        $path = getenv('XDG_DATA_HOME') ? : $this->getHomeDir() . DIRECTORY_SEPARATOR . '.local' . DIRECTORY_SEPARATOR . 'share';
+        $path = getenv('XDG_DATA_HOME') ?: $this->getHomeDir() . DIRECTORY_SEPARATOR . '.local' . DIRECTORY_SEPARATOR . 'share';
 
         return $path;
     }
@@ -65,6 +65,7 @@ class Xdg
         $dataDirs = getenv('XDG_DATA_DIRS') ? explode(':', getenv('XDG_DATA_DIRS')) : array('/usr/local/share', '/usr/share');
 
         $paths = array_merge(array($this->getHomeDataDir()), $dataDirs);
+
         return $paths;
     }
 
@@ -73,7 +74,7 @@ class Xdg
      */
     public function getHomeCacheDir()
     {
-        $path = getenv('XDG_CACHE_HOME') ? : $this->getHomeDir() . DIRECTORY_SEPARATOR . '.cache';
+        $path = getenv('XDG_CACHE_HOME') ?: $this->getHomeDir() . DIRECTORY_SEPARATOR . '.cache';
 
         return $path;
 
@@ -89,7 +90,7 @@ class Xdg
             throw new \RuntimeException('XDG_RUNTIME_DIR was not set');
         }
 
-        $fallback = self::RUNTIME_DIR_FALLBACK . getenv('USER');
+        $fallback = sys_get_temp_dir() . DIRECTORY_SEPARATOR . self::RUNTIME_DIR_FALLBACK . getenv('USER');
 
         $create = false;
 
@@ -116,6 +117,5 @@ class Xdg
 
         return $fallback;
     }
-
 
 }
