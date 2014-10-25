@@ -1,7 +1,7 @@
 {
     "name": "dnoegel/php-xdg-base-dir",
     "description": "implementation of xdg base directory specification for php",
-    "type": "project",
+    "type": "library",
     "license": "MIT",
     "require": {
         "php": ">=5.3.2"
