@@ -16,16 +16,16 @@ $ composer require dnoegel/php-xdg-base-dir
 ## Usage
 
 ``` php
-$xdg = \XdgBaseDir\Xdg();
+$xdg = new \XdgBaseDir\Xdg();
 
 echo $xdg->getHomeDir();
-echo $xdg->getHomeConfigDir()
-echo $xdg->getHomeDataDir()
-echo $xdg->getHomeCacheDir()
-echo $xdg->getRuntimeDir()
+echo $xdg->getHomeConfigDir();
+echo $xdg->getHomeDataDir();
+echo $xdg->getHomeCacheDir();
+echo $xdg->getRuntimeDir();
 
-$xdg->getDataDirs() // returns array
-$xdg->getConfigDirs() // returns array
+print_r($xdg->getDataDirs()); // returns array
+print_r($xdg->getConfigDirs()); // returns array
 ```
 
 ## Testing
