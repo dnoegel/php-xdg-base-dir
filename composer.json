@@ -1,6 +1,6 @@
 {
-    "name": "dnoegel/php-xdg-base-dir",
-    "description": "implementation of xdg base directory specification for php",
+    "name": "krageon/php-xdg-base-dir",
+    "description": "implementation of xdg base directory specification for php, uses posix_getuid when possible",
     "type": "library",
     "license": "MIT",
     "require": {
