@@ -27,7 +27,13 @@ class Xdg
      */
     public function getHomeConfigDir()
     {
-        $path = getenv('XDG_CONFIG_HOME') ?: $this->getHomeDir() . DIRECTORY_SEPARATOR . '.config';
+        if ($path = getenv('XDG_CONFIG_HOME')) {
+            return $path;
+        }
+
+        $homeDir = $this->getHomeDir();
+
+        $path = DIRECTORY_SEPARATOR === $homeDir ? $homeDir.'.config' : $homeDir . DIRECTORY_SEPARATOR . '.config';
 
         return $path;
     }
