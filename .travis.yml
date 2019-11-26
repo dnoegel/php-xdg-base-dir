@@ -1,16 +1,28 @@
 language: php
 
-php:
-  - 5.5
-  - 5.6
-  - 7.0
-  - 7.1
-  - hhvm
+sudo: false
 
-before_script:
-  - travis_retry composer self-update
-  - travis_retry composer install --no-interaction --prefer-source --dev
+matrix:
+  include:
+    - php: hhvm-3.18
+      dist: trusty
+    - php: 5.3
+      dist: precise
+    - php: 5.4
+      dist: trusty
+    - php: 5.5
+      dist: trusty
+    - php: 5.6
+      dist: xenial
+    - php: 7.0
+      dist: xenial
+    - php: 7.1
+      dist: bionic
+    - php: 7.2
+      dist: bionic
+    - php: 7.3
+      dist: bionic
 
-script:
-  - ./vendor/bin/phpunit --coverage-text
+before_script: travis_retry composer install
 
+script: vendor/bin/phpunit --coverage-text
