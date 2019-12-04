@@ -1,6 +1,6 @@
 <?php
 
-class XdgTest extends PHPUnit_Framework_TestCase
+class XdgTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return \XdgBaseDir\Xdg
