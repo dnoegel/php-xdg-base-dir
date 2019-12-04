@@ -1,5 +1,7 @@
 # XDG Base Directory
 
+[![Total Downloads](https://poser.pugx.org/dnoegel/php-xdg-base-dir/downloads?format=flat-square)](https://packagist.org/packages/dnoegel/php-xdg-base-dir)
+[![Latest Stable Version](https://poser.pugx.org/dnoegel/php-xdg-base-dir/v/stable?format=flat-square)](https://packagist.org/packages/dnoegel/php-xdg-base-dir)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/dnoegel/php-xdg-base-dir/master.svg?style=flat-square)](https://travis-ci.org/dnoegel/php-xdg-base-dir)
 
