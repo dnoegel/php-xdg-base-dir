@@ -129,6 +129,4 @@ class Xdg
 
         return getmyuid();
     }
-
-
 }
